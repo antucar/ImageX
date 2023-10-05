@@ -13,6 +13,8 @@ import com.ImageX.ImageX.R
 import com.ImageX.ImageX.adapter.ArtRecyclerAdapter
 import com.ImageX.ImageX.databinding.FragmentArtsBinding
 import com.ImageX.ImageX.viewmodel.ArtViewModel
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
@@ -22,7 +24,7 @@ import javax.inject.Inject
 class ArtFragment @Inject constructor(
         val artRecyclerAdapter: ArtRecyclerAdapter
         ) : Fragment(R.layout.fragment_arts) {
-
+    lateinit var mAdView : AdView
     //private val viewModel: ArtViewModel by viewModels()
     //private val viewModel: ArtViewModel by activityViewModels()
     lateinit var viewModel : ArtViewModel
@@ -46,7 +48,9 @@ class ArtFragment @Inject constructor(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(ArtViewModel::class.java)
-
+        mAdView = view.findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
         val binding = FragmentArtsBinding.bind(view)
         fragmentBinding = binding
 

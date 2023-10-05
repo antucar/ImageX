@@ -3,6 +3,7 @@ package com.ImageX.ImageX.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ImageX.ImageX.R
+import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -16,5 +17,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportFragmentManager.fragmentFactory = fragmentFactory
         setContentView(R.layout.activity_main)
+        MobileAds.initialize(this) {}
     }
 }
